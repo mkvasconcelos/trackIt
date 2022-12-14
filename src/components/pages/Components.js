@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ColorRing } from "react-loader-spinner";
 
 export function LogoHome() {
   return (
@@ -57,6 +58,7 @@ const ContainerSubmit = styled.input`
   background: #52b6ff;
   color: #ffffff;
   font-size: 20px;
+  cursor: pointer;
 `;
 
 export const Container = styled.div`
@@ -74,4 +76,26 @@ export const Container = styled.div`
     text-decoration: underline;
     font-size: 14px;
   }
+`;
+
+export function Loading() {
+  return (
+    <ContainerLoading>
+      <ColorRing
+        visible={true}
+        height="200"
+        width="200"
+        ariaLabel="blocks-loading"
+        wrapperStyle={{}}
+        wrapperClass="blocks-wrapper"
+        colors={["#126ba5", "#126ba5", "#126ba5", "#126ba5", "#126ba5"]}
+      />
+    </ContainerLoading>
+  );
+}
+
+const ContainerLoading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

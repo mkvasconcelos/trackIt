@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { URL } from "../../constants/APImethods";
-import { Input, LogoHome, Submit, Container } from "./Input";
+import { URL } from "../../constants/constants";
+import { Input, LogoHome, Submit, Container, Loading } from "./Components";
 import axios from "axios";
 
 export default function Login() {
@@ -9,6 +9,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [disable, setDisable] = useState(false);
+  const [loading, setLoading] = useState(false);
   function login(email, password) {
     const payload = {
       email: email,
@@ -19,15 +20,22 @@ export default function Login() {
     res.catch((err) => {
       alert(err.response.data.message);
       setDisable(false);
+      setLoading(false);
       setEmail("");
       setPwd("");
     });
   }
   function send(e) {
+    setLoading(true);
     setDisable(true);
     e.preventDefault();
     login(email, pwd);
   }
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <Container>
       <LogoHome />

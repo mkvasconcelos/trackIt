@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { URL } from "../../constants/APImethods";
-import { Input, LogoHome, Submit, Container } from "./Input";
+import { URL } from "../../constants/constants";
+import { Input, LogoHome, Submit, Container, Loading } from "./Components";
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [disable, setDisable] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   function signUp(email, name, image, password) {
     const payload = {
       email: email,
@@ -19,14 +20,25 @@ export default function SignUp() {
       password: password,
     };
     const res = axios.post(`${URL}/auth/sign-up`, payload);
-    res.then((res) => console.log(res.status, res.data));
-    res.catch((res) => console.log(res.status));
+    res.then(() => navigate("/"));
+    res.catch((err) => {
+      alert(err.response.data.message);
+      setDisable(false);
+      setLoading(false);
+      setEmail("");
+      setPwd("");
+      setName("");
+      setImage("");
+    });
   }
-
   function send(e) {
-    e.preventDefault();
+    setLoading(true);
     setDisable(true);
+    e.preventDefault();
     signUp(email, name, image, pwd);
+  }
+  if (loading) {
+    return <Loading />;
   }
   return (
     <Container>
