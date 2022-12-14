@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { login } from "../../constants/APImethods";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [pwd, setPwd] = useState("");
+  function send(e) {
+    e.preventDefault();
+    login(email, pwd);
+  }
   return (
     <Container>
       <h1>TrackIt</h1>
-      <form>
-        <input type="email" placeholder="email"></input>
-        <input type="password" placeholder="senha"></input>
-        <input type="button" value="Entrar"></input>
+      <form onSubmit={send}>
+        <input
+          type="email"
+          placeholder="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        ></input>
+        <input
+          type="password"
+          placeholder="senha"
+          value={pwd}
+          onChange={(e) => setPwd(e.target.value)}
+        ></input>
+        <input type="submit" value="Entrar"></input>
       </form>
       <Link to="/cadastro">
         <p>Não tem uma conta? Cadastre-se!</p>
