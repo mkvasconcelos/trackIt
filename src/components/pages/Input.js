@@ -15,13 +15,14 @@ const ContainerLogo = styled.div`
   }
 `;
 
-export function Input({ type, placeholder, value, onChange }) {
+export function Input({ type, placeholder, value, onChange, disabled }) {
   return (
     <ContainerInput
       type={type}
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      disabled={disabled}
     ></ContainerInput>
   );
 }
@@ -39,8 +40,14 @@ const ContainerInput = styled.input`
   }
 `;
 
-export function Submit({ value }) {
-  return <ContainerSubmit type="submit" value={value}></ContainerSubmit>;
+export function Submit({ value, disabled }) {
+  return (
+    <ContainerSubmit
+      type="submit"
+      value={value}
+      disabled={disabled}
+    ></ContainerSubmit>
+  );
 }
 const ContainerSubmit = styled.input`
   margin-bottom: 5px;
