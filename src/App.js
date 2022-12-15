@@ -7,9 +7,9 @@ import { Image } from "./constants/constants";
 import { useState } from "react";
 
 export default function App() {
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   return (
-    <Image.Provider value={[image, setImage]}>
+    <Image.Provider value="Teste">
       <div>
         <BrowserRouter>
           <GlobalStyle />

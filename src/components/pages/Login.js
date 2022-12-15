@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { URL, Image } from "../../constants/constants";
 import { Input, LogoHome, Submit, Container, Loading } from "../Components";
@@ -8,7 +8,6 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
-  const [image, setImage] = useContext(Image);
   const [disable, setDisable] = useState(false);
   const [loading, setLoading] = useState(false);
   function login(email, password) {
@@ -19,7 +18,7 @@ export default function Login() {
     const res = axios.post(`${URL}/auth/login`, payload);
     res.then((res) => {
       navigate("/hoje");
-      setImage(res.data.image);
+      // setImage(res.data.image);
     });
     res.catch((err) => {
       alert(err.response.data.message);

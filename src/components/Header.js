@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { Image } from "../constants/constants";
 
-export default function Header({ image }) {
+export default function Header() {
+  const image = useContext(Image);
   return (
     <Container>
       <h1>TrackIt</h1>
-      <img src={image}></img>
+      <img src={image} alt="profile"></img>
     </Container>
   );
 }
