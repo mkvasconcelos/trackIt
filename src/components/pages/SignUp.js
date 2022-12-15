@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { URL } from "../../constants/constants";
-import { Input, LogoHome, Submit, Container, Loading } from "./Components";
+import { Input, LogoHome, Submit, Container, Loading } from "../Components";
 
 export default function SignUp() {
   const navigate = useNavigate();
