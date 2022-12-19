@@ -43,12 +43,9 @@ export default function Today() {
       }
     );
     res.then((res) => {
-      console.log(res);
       getHabitsToday();
     });
-    res.catch((err) => {
-      console.log(err.res);
-    });
+    res.catch((err) => {});
   }
   function unDoneHabit(habit) {
     const res = axios.post(
