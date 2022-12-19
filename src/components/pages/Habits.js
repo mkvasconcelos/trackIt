@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Header from "../Header";
 import Footer from "../Footer";
 import { Token } from "../../contexts/contexts";
-import { Loading } from "../Components";
+import Loading from "../Loading";
 import Habit from "../Habit";
 import { list } from "../../constants/constants";
 import { Container, Main } from "./StyledComponents";

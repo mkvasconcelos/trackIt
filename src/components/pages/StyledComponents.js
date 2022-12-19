@@ -13,3 +13,21 @@ export const Container = styled.div`
     color: #666666;
   }
 `;
+
+export const ContainerLogSig = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: center;
+  form {
+    display: flex;
+    flex-direction: column;
+    margin: 10% 10% 5% 10%;
+    width: 80%;
+  }
+  p {
+    color: #52b6ff;
+    text-decoration: underline;
+    font-size: 14px;
+  }
+`;

@@ -1,8 +1,12 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Image, Token } from "../../contexts/contexts";
-import { Input, LogoHome, Submit, Container, Loading } from "../Components";
 import axios from "axios";
+import { Image, Token } from "../../contexts/contexts";
+import { ContainerLogSig } from "./StyledComponents";
+import LogoHome from "../LogoHome";
+import Input from "../Input";
+import Submit from "../Submit";
+import Loading from "../Loading";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -46,10 +50,11 @@ export default function Login() {
   }
 
   return (
-    <Container>
+    <ContainerLogSig>
       <LogoHome />
       <form onSubmit={send}>
         <Input
+          data-test="email-input"
           type={"email"}
           placeholder={"email"}
           value={email}
@@ -68,6 +73,6 @@ export default function Login() {
       <Link to="/cadastro">
         <p>Já tem uma conta? Faça login!</p>
       </Link>
-    </Container>
+    </ContainerLogSig>
   );
 }

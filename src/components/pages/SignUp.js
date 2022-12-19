@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Input, LogoHome, Submit, Container, Loading } from "../Components";
+import { ContainerLogSig } from "./StyledComponents";
+import LogoHome from "../LogoHome";
+import Input from "../Input";
+import Submit from "../Submit";
+import Loading from "../Loading";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -43,7 +47,7 @@ export default function SignUp() {
     return <Loading />;
   }
   return (
-    <Container>
+    <ContainerLogSig>
       <LogoHome />
       <form onSubmit={send}>
         <Input
@@ -79,6 +83,6 @@ export default function SignUp() {
       <Link to="/">
         <p>Já tem uma conta? Faça login!</p>
       </Link>
-    </Container>
+    </ContainerLogSig>
   );
 }

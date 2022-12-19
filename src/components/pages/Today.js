@@ -10,7 +10,7 @@ import {
 import HabitToday from "../HabitToday";
 import { day } from "../../constants/constants";
 import axios from "axios";
-import { Loading } from "../Components";
+import Loading from "../Loading";
 import { Container, Main } from "./StyledComponents";
 
 export default function Today() {
