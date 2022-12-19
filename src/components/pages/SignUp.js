@@ -51,6 +51,7 @@ export default function SignUp() {
       <LogoHome />
       <form onSubmit={send}>
         <Input
+          data-test="email-input"
           type={"email"}
           placeholder={"email"}
           value={email}
@@ -58,6 +59,7 @@ export default function SignUp() {
           disabled={disable}
         />
         <Input
+          data-test="password-input"
           type={"password"}
           placeholder={"senha"}
           value={pwd}
@@ -65,6 +67,7 @@ export default function SignUp() {
           disabled={disable}
         />
         <Input
+          data-test="user-name-input"
           type={"text"}
           placeholder={"nome"}
           value={name}
@@ -72,15 +75,16 @@ export default function SignUp() {
           disabled={disable}
         />
         <Input
+          data-test="user-image-input"
           type={"text"}
           placeholder={"foto"}
           value={image}
           onChange={(e) => setImage(e.target.value)}
           disabled={disable}
         />
-        <Submit value={"Cadastrar"} disabled={disable} />
+        <Submit data-test="signup-btn" value={"Cadastrar"} disabled={disable} />
       </form>
-      <Link to="/">
+      <Link data-test="login-link" to="/">
         <p>Já tem uma conta? Faça login!</p>
       </Link>
     </ContainerLogSig>

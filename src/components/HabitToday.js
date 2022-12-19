@@ -17,15 +17,18 @@ export default function HabitToday({
   return (
     <Container check={check} record={sequence === record && check}>
       <div>
-        <h1>{title}</h1>
-        <h2>
+        <h1 data-test="today-habit-name">{title}</h1>
+        <h2 data-test="today-habit-sequence">
           Sequência atual: <span>{`${sequence} dias`}</span>
         </h2>
-        <h2>
+        <h2 data-test="today-habit-record">
           Seu recorde: <span>{`${record} dias`}</span>
         </h2>
       </div>
-      <button onClick={() => onClick(habitId, check)}>
+      <button
+        data-test="today-habit-check-btn"
+        onClick={() => onClick(habitId, check)}
+      >
         <Check />
       </button>
     </Container>

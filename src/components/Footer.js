@@ -9,9 +9,14 @@ export default function Footer() {
   const { listHabitsToday } = useContext(HabitsTodayList);
   const navigate = useNavigate();
   return (
-    <Container>
-      <ContainerLink to="/habitos">Hábitos</ContainerLink>
-      <ContainerProgressBar onClick={() => navigate("/hoje")}>
+    <Container data-test="menu">
+      <ContainerLink data-test="habit-link" to="/habitos">
+        Hábitos
+      </ContainerLink>
+      <ContainerProgressBar
+        data-test="today-link"
+        onClick={() => navigate("/hoje")}
+      >
         <CircularProgressbar
           value={habits}
           maxValue={listHabitsToday.length}
@@ -33,7 +38,9 @@ export default function Footer() {
           })}
         />
       </ContainerProgressBar>
-      <ContainerLink to="/historico">Histórico</ContainerLink>
+      <ContainerLink data-test="history-link" to="/historico">
+        Histórico
+      </ContainerLink>
     </Container>
   );
 }

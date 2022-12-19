@@ -13,7 +13,7 @@ export default function Header() {
     }
   }, []);
   return (
-    <Container>
+    <Container data-test="header">
       <ContainerLink to="/">
         <h1>TrackIt</h1>
       </ContainerLink>

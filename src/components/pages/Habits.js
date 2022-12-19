@@ -84,14 +84,19 @@ export default function Habits() {
       <Main>
         <FirstParagraph>
           <h1>Meus hábitos</h1>
-          <button onClick={() => setShow(true)} disabled={disable}>
+          <button
+            data-test="habit-create-btn"
+            onClick={() => setShow(true)}
+            disabled={disable}
+          >
             +
           </button>
         </FirstParagraph>
-        <CreateHabit show={show}>
+        <CreateHabit data-test="habit-create-container" show={show}>
           <form onSubmit={send}>
             <div>
               <input
+                data-test="habit-name-input"
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -102,6 +107,7 @@ export default function Habits() {
             <div>
               {list.map((d) => (
                 <InputDay
+                  data-test="habit-day"
                   key={d.id}
                   type="button"
                   value={d.weekday}
@@ -113,12 +119,18 @@ export default function Habits() {
             </div>
             <div>
               <input
+                data-test="habit-create-cancel-btn"
                 text="button"
                 disabled={disable}
                 onClick={() => setShow(false)}
                 value="Cancelar"
               ></input>
-              <input type="submit" value="Salvar" disabled={disable}></input>
+              <input
+                data-test="habit-create-save-btn"
+                type="submit"
+                value="Salvar"
+                disabled={disable}
+              ></input>
             </div>
           </form>
         </CreateHabit>
@@ -127,6 +139,7 @@ export default function Habits() {
             ? "Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!"
             : habits.map((h) => (
                 <Habit
+                  data-test="habit-container"
                   key={h.id}
                   title={h.name}
                   days={h.days}

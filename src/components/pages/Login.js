@@ -62,15 +62,16 @@ export default function Login() {
           disabled={disable}
         />
         <Input
+          data-test="password-input"
           type={"password"}
           placeholder={"senha"}
           value={pwd}
           onChange={(e) => setPwd(e.target.value)}
           disabled={disable}
         />
-        <Submit value={"Entrar"} disabled={disable} />
+        <Submit data-test="login-btn" value={"Entrar"} disabled={disable} />
       </form>
-      <Link to="/cadastro">
+      <Link data-test="signup-link" to="/cadastro">
         <p>Já tem uma conta? Faça login!</p>
       </Link>
     </ContainerLogSig>

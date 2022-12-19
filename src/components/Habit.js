@@ -26,11 +26,12 @@ export default function Habit({ title, days, habitId, getHabits }) {
   return (
     <Container>
       <div>
-        <h1>{title}</h1>
+        <h1 data-test="habit-name">{title}</h1>
       </div>
       <div>
         {list.map((d) => (
           <InputDay
+            data-test="habit-day"
             key={d.id}
             type="button"
             value={d.weekday}
@@ -39,7 +40,10 @@ export default function Habit({ title, days, habitId, getHabits }) {
           ></InputDay>
         ))}
       </div>
-      <Trash onClick={() => removeHabit(habitId)} />
+      <Trash
+        data-test="habit-delete-btn"
+        onClick={() => removeHabit(habitId)}
+      />
     </Container>
   );
 }

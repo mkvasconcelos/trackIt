@@ -76,8 +76,8 @@ export default function Today() {
       <Header />
       <Main habits={habits}>
         <FirstParagraph>
-          <h1>{`${day}, ${date}/${month + 1}`}</h1>
-          <h2>
+          <h1 data-test="today">{`${day}, ${date}/${month + 1}`}</h1>
+          <h2 data-test="today-counter">
             {habits
               ? `${parseInt(
                   (habits / listHabitsToday.length) * 100
@@ -87,6 +87,7 @@ export default function Today() {
         </FirstParagraph>
         {listHabitsToday.map((h) => (
           <HabitToday
+            data-test="today-habit-container"
             key={h.id}
             title={h.name}
             sequence={h.currentSequence}
