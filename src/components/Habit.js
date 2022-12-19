@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { BsTrash } from "react-icons/bs";
 import styled from "styled-components";
 import { list } from "../constants/constants";
@@ -7,13 +7,11 @@ import { Token } from "../contexts/contexts";
 
 export default function Habit({ title, days, habitId, getHabits }) {
   const { token } = useContext(Token);
-  const [loading, setLoading] = useState(false);
   function removeHabit(habit) {
     const answer = window.confirm("Tem certeza que quer apagar esse hábito?");
     if (!answer) {
       return;
     }
-    setLoading(true);
     const res = axios.delete(
       `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit}`,
       {

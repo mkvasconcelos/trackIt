@@ -13,7 +13,7 @@ export default function Habits() {
   const [daysSelected, setDaysSelected] = useState([]);
   const [show, setShow] = useState(false);
   const [disable, setDisable] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [habits, setHabits] = useState([]);
   useEffect(() => {
@@ -27,10 +27,12 @@ export default function Habits() {
       }
     );
     res.then((res) => {
-      console.log(res);
       setHabits(res.data);
+      setLoading(false);
     });
-    res.catch((err) => {});
+    res.catch((err) => {
+      setLoading(false);
+    });
   }
 
   function createHabit(title, daysSelected) {
@@ -46,7 +48,6 @@ export default function Habits() {
       }
     );
     res.then((res) => {
-      console.log(res);
       setLoading(false);
       setDisable(false);
       setShow(false);
