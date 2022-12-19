@@ -7,6 +7,7 @@ import { Token } from "../../contexts/contexts";
 import { Loading } from "../Components";
 import Habit from "../Habit";
 import { list } from "../../constants/constants";
+import { Container, Main } from "./StyledComponents";
 
 export default function Habits() {
   const { token } = useContext(Token);
@@ -139,22 +140,6 @@ export default function Habits() {
     </Container>
   );
 }
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Main = styled.div`
-  background: #e5e5e5;
-  margin: 70px 0;
-  padding: 0 18px;
-  height: 100%;
-  section {
-    font-size: 18px;
-    color: #666666;
-  }
-`;
 
 const FirstParagraph = styled.div`
   margin: 30px 0;

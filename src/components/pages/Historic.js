@@ -2,6 +2,8 @@ import React from "react";
 import Footer from "../Footer";
 import Header from "../Header";
 import styled from "styled-components";
+import { Container, Main } from "./StyledComponents";
+
 export default function Historic() {
   return (
     <Container>
@@ -9,26 +11,17 @@ export default function Historic() {
       <Main>
         <FirstParagraph>
           <h1>Histórico</h1>
-          <h2>Em breve você poderá ver o histórico dos seus hábitos aqui!</h2>
         </FirstParagraph>
+        <section>
+          Em breve você poderá ver o histórico dos seus hábitos aqui!
+        </section>
       </Main>
       <Footer />
     </Container>
   );
 }
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Main = styled.div`
-  background: #e5e5e5;
-  margin: 70px 0;
-  height: 100%;
-`;
-
 const FirstParagraph = styled.div`
-  margin: 30px 18px;
+  margin: 30px 0;
   display: flex;
   flex-direction: column;
   height: fit-content;

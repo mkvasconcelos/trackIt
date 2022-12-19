@@ -11,6 +11,7 @@ import HabitToday from "../HabitToday";
 import { day } from "../../constants/constants";
 import axios from "axios";
 import { Loading } from "../Components";
+import { Container, Main } from "./StyledComponents";
 
 export default function Today() {
   const date = new Date().getDate();
@@ -101,20 +102,8 @@ export default function Today() {
     </Container>
   );
 }
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Main = styled.div`
-  background: #e5e5e5;
-  margin: 70px 0;
-  height: 100%;
-`;
-
 const FirstParagraph = styled.div`
-  margin: 30px 18px;
+  margin: 30px 0;
   display: flex;
   flex-direction: column;
   height: fit-content;

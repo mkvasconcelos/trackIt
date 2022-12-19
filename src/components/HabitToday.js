@@ -35,7 +35,7 @@ export default function HabitToday({
 const Container = styled.div`
   display: flex;
   padding: 15px;
-  margin: 10px 18px;
+  margin: 10px 0;
   background: #ffffff;
   border-radius: 5px;
   height: 94px;

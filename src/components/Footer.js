@@ -1,20 +1,25 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HabitsConcluded, HabitsTodayList } from "../contexts/contexts";
 
 export default function Footer() {
   const { habits } = useContext(HabitsConcluded);
   const { listHabitsToday } = useContext(HabitsTodayList);
+  const navigate = useNavigate();
   return (
     <Container>
       <ContainerLink to="/habitos">Hábitos</ContainerLink>
-      <ContainerHabits>
+      <ContainerProgressBar onClick={() => navigate("/hoje")}>
         <CircularProgressbar
           value={habits}
           maxValue={listHabitsToday.length}
-          text={"Hoje"}
+          text={
+            <tspan dy={5} dx={-20}>
+              Hoje
+            </tspan>
+          }
           background
           backgroundPadding={6}
           styles={buildStyles({
@@ -27,7 +32,7 @@ export default function Footer() {
             trailColor: "transparent",
           })}
         />
-      </ContainerHabits>
+      </ContainerProgressBar>
       <ContainerLink to="/historico">Histórico</ContainerLink>
     </Container>
   );
@@ -52,7 +57,7 @@ const ContainerLink = styled(Link)`
   font-size: 18px;
 `;
 
-const ContainerHabits = styled.div`
+const ContainerProgressBar = styled.div`
   display: flex;
   width: 91px;
   height: 91px;
@@ -61,4 +66,5 @@ const ContainerHabits = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 40px;
+  cursor: pointer;
 `;

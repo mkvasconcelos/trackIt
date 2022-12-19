@@ -32,6 +32,7 @@ const Container = styled.div`
   top: 0;
   width: 100%;
   padding: 0 10px;
+  z-index: 1;
   h1 {
     font-family: "Playball", Arial, Helvetica, sans-serif;
     color: #ffffff;
