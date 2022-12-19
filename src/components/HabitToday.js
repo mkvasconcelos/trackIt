@@ -9,14 +9,14 @@ export default function HabitToday({
   record,
   habitId,
   doneHabit,
+  unDoneHabit,
 }) {
   const [check, setCheck] = useState(false);
   const { habits, setHabits } = useContext(HabitsConcluded);
   function onClick(habitId) {
     check ? setHabits(habits - 1) : setHabits(habits + 1);
+    !check ? doneHabit(habitId) : unDoneHabit(habitId);
     setCheck((current) => !current);
-    console.log(habitId);
-    doneHabit(habitId);
   }
   return (
     <Container check={check}>

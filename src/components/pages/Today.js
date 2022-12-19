@@ -49,6 +49,22 @@ export default function Today() {
       console.log(err.res);
     });
   }
+  function unDoneHabit(habit) {
+    const res = axios.post(
+      `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit}/uncheck`,
+      {},
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    res.then((res) => {
+      console.log(res);
+      getHabitsToday();
+    });
+    res.catch((err) => {
+      console.log(err.res);
+    });
+  }
   if (loading) {
     return <Loading />;
   }
@@ -72,6 +88,7 @@ export default function Today() {
             record={h.highestSequence}
             habitId={h.id}
             doneHabit={doneHabit}
+            unDoneHabit={unDoneHabit}
           />
         ))}
       </Main>
