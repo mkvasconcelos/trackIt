@@ -4,7 +4,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import { HabitsConcluded, Token } from "../../contexts/contexts";
 import HabitToday from "../HabitToday";
-import { day } from "../../constants/constants";
+import { day, list } from "../../constants/constants";
 import axios from "axios";
 import { Loading } from "../Components";
 
@@ -12,7 +12,7 @@ export default function Today() {
   const date = new Date().getDate();
   const month = new Date().getMonth();
   const { token } = useContext(Token);
-  const { habits } = useContext(HabitsConcluded);
+  const { habits, setHabits } = useContext(HabitsConcluded);
   const [loading, setLoading] = useState(true);
   const [listHabitsToday, setListHabitsToday] = useState([]);
   useEffect(() => {
@@ -28,6 +28,7 @@ export default function Today() {
     res.then((res) => {
       setLoading(false);
       setListHabitsToday(res.data);
+      setHabits(res.data.filter((h) => h.done === true).length);
     });
     res.catch((err) => {
       setLoading(false);
@@ -87,12 +88,13 @@ export default function Today() {
             sequence={h.currentSequence}
             record={h.highestSequence}
             habitId={h.id}
+            check={h.done}
             doneHabit={doneHabit}
             unDoneHabit={unDoneHabit}
           />
         ))}
       </Main>
-      <Footer />
+      <Footer listHabitsToday={listHabitsToday} />
     </Container>
   );
 }

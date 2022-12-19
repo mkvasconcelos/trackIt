@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Image } from "../contexts/contexts";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const { image } = useContext(Image);
   return (
     <Container>
-      <h1>TrackIt</h1>
+      <ContainerLink to="/">
+        <h1>TrackIt</h1>
+      </ContainerLink>
       <img src={image} alt="profile"></img>
     </Container>
   );
@@ -33,4 +36,8 @@ const Container = styled.div`
     height: 51px;
     border-radius: 98.5px;
   }
+`;
+
+const ContainerLink = styled(Link)`
+  text-decoration: none;
 `;

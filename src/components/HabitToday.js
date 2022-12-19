@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import styled from "styled-components";
-import { HabitsConcluded } from "../contexts/contexts";
 
 export default function HabitToday({
   title,
@@ -10,16 +9,13 @@ export default function HabitToday({
   habitId,
   doneHabit,
   unDoneHabit,
+  check,
 }) {
-  const [check, setCheck] = useState(false);
-  const { habits, setHabits } = useContext(HabitsConcluded);
-  function onClick(habitId) {
-    check ? setHabits(habits - 1) : setHabits(habits + 1);
+  function onClick(habitId, check) {
     !check ? doneHabit(habitId) : unDoneHabit(habitId);
-    setCheck((current) => !current);
   }
   return (
-    <Container check={check}>
+    <Container check={check} record={sequence === record && check}>
       <div>
         <h1>{title}</h1>
         <h2>
@@ -29,7 +25,7 @@ export default function HabitToday({
           Seu recorde: <span>{`${record} dias`}</span>
         </h2>
       </div>
-      <button onClick={() => onClick(habitId)}>
+      <button onClick={() => onClick(habitId, check)}>
         <Check />
       </button>
     </Container>
