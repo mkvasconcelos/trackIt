@@ -2,7 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../Header";
 import Footer from "../Footer";
-import { HabitsConcluded, Token } from "../../contexts/contexts";
+import {
+  HabitsConcluded,
+  HabitsTodayList,
+  Token,
+} from "../../contexts/contexts";
 import HabitToday from "../HabitToday";
 import { day } from "../../constants/constants";
 import axios from "axios";
@@ -14,7 +18,7 @@ export default function Today() {
   const { token } = useContext(Token);
   const { habits, setHabits } = useContext(HabitsConcluded);
   const [loading, setLoading] = useState(true);
-  const [listHabitsToday, setListHabitsToday] = useState([]);
+  const { listHabitsToday, setListHabitsToday } = useContext(HabitsTodayList);
   useEffect(() => {
     getHabitsToday();
   }, []);
@@ -93,7 +97,7 @@ export default function Today() {
           />
         ))}
       </Main>
-      <Footer listHabitsToday={listHabitsToday.length} />
+      <Footer />
     </Container>
   );
 }
