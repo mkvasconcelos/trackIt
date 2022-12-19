@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
-import { Image } from "../contexts/contexts";
+import { Image, Token } from "../contexts/contexts";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
   const navigate = useNavigate();
   const { image } = useContext(Image);
+  const { token } = useContext(Token);
   useEffect(() => {
-    if (!image) {
+    if (!token) {
       navigate("/");
     }
   }, []);

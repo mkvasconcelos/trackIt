@@ -111,9 +111,12 @@ export default function Habits() {
               ))}
             </div>
             <div>
-              <button disabled={disable} onClick={() => setShow(false)}>
-                Cancelar
-              </button>
+              <input
+                text="button"
+                disabled={disable}
+                onClick={() => setShow(false)}
+                value="Cancelar"
+              ></input>
               <input type="submit" value="Salvar" disabled={disable}></input>
             </div>
           </form>
@@ -208,7 +211,7 @@ const CreateHabit = styled.div`
       display: flex;
       justify-content: end;
     }
-    div:nth-child(3) input {
+    div:nth-child(3) input:last-child {
       width: 84px;
       height: 35px;
       background: #52b6ff;
@@ -219,8 +222,9 @@ const CreateHabit = styled.div`
       font-size: 16px;
       cursor: pointer;
     }
-    div:nth-child(3) button {
+    div:nth-child(3) input:first-child {
       background: none;
+      width: 75px;
       border: none;
       color: #52b6ff;
       font-size: 16px;
