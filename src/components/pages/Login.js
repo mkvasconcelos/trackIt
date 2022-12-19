@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { URL, Image } from "../../constants/constants";
+import { Image, Token } from "../../contexts/contexts";
 import { Input, LogoHome, Submit, Container, Loading } from "../Components";
 import axios from "axios";
 
@@ -10,15 +10,21 @@ export default function Login() {
   const [pwd, setPwd] = useState("");
   const [disable, setDisable] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { setImage } = useContext(Image);
+  const { setToken } = useContext(Token);
   function login(email, password) {
     const payload = {
       email: email,
       password: password,
     };
-    const res = axios.post(`${URL}/auth/login`, payload);
+    const res = axios.post(
+      `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login`,
+      payload
+    );
     res.then((res) => {
       navigate("/hoje");
-      // setImage(res.data.image);
+      setImage(res.data.image);
+      setToken(res.data.token);
     });
     res.catch((err) => {
       alert(err.response.data.message);

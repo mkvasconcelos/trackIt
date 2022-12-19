@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { URL } from "../../constants/constants";
 import { Input, LogoHome, Submit, Container, Loading } from "../Components";
 
 export default function SignUp() {
@@ -19,7 +18,10 @@ export default function SignUp() {
       image: image,
       password: password,
     };
-    const res = axios.post(`${URL}/auth/sign-up`, payload);
+    const res = axios.post(
+      `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up`,
+      payload
+    );
     res.then(() => navigate("/"));
     res.catch((err) => {
       alert(err.response.data.message);

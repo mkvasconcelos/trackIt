@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { Image } from "../constants/constants";
+import { Image } from "../contexts/contexts";
 
 export default function Header() {
-  const image = useContext(Image);
+  const { image } = useContext(Image);
   return (
     <Container>
       <h1>TrackIt</h1>
