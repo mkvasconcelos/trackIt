@@ -4,7 +4,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import { HabitsConcluded, Token } from "../../contexts/contexts";
 import HabitToday from "../HabitToday";
-import { day, list } from "../../constants/constants";
+import { day } from "../../constants/constants";
 import axios from "axios";
 import { Loading } from "../Components";
 
@@ -77,7 +77,9 @@ export default function Today() {
           <h1>{`${day}, ${date}/${month + 1}`}</h1>
           <h2>
             {habits
-              ? `${habits} dos hábitos concluídos`
+              ? `${parseInt(
+                  (habits / listHabitsToday.length) * 100
+                )}% dos hábitos concluídos`
               : "Nenhum hábito concluído ainda"}
           </h2>
         </FirstParagraph>
@@ -94,7 +96,7 @@ export default function Today() {
           />
         ))}
       </Main>
-      <Footer listHabitsToday={listHabitsToday} />
+      <Footer listHabitsToday={listHabitsToday.length} />
     </Container>
   );
 }

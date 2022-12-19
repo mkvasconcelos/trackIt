@@ -4,7 +4,7 @@ import { ColorRing } from "react-loader-spinner";
 export function LogoHome() {
   return (
     <ContainerLogo>
-      <img src="logo.png"></img>
+      <img src="logo.png" alt={"logo-trackIt"}></img>
       <h1>TrackIt</h1>
     </ContainerLogo>
   );

@@ -30,4 +30,7 @@ switch (new Date().getDay()) {
     break;
   case 6:
     day = "Sábado";
+    break;
+  default:
+    day = "Wrong";
 }

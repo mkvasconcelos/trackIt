@@ -62,7 +62,3 @@ const ContainerLink = styled(Link)`
   color: #52b6ff;
   font-size: 18px;
 `;
-
-const Circular = styled(CircularProgressbarWithChildren)`
-  background-color: blue;
-`;

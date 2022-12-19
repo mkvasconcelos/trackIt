@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/pages/Login";
 import SignUp from "./components/pages/SignUp";
 import Today from "./components/pages/Today";
+import Historic from "./components/pages/Historic";
 import GlobalStyle from "./globalStyles";
 import { HabitsConcluded, Image, Token } from "./contexts/contexts";
 import { useState } from "react";
@@ -23,6 +24,7 @@ export default function App() {
                 <Route path="/cadastro" element={<SignUp />} />
                 <Route path="/hoje" element={<Today />} />
                 <Route path="/habitos" element={<Habits />} />
+                <Route path="/historico" element={<Historic />} />
               </Routes>
             </BrowserRouter>
           </div>
