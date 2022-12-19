@@ -3,12 +3,20 @@ import { BsCheckLg } from "react-icons/bs";
 import styled from "styled-components";
 import { HabitsConcluded } from "../contexts/contexts";
 
-export default function HabitToday({ title, sequence, record }) {
+export default function HabitToday({
+  title,
+  sequence,
+  record,
+  habitId,
+  doneHabit,
+}) {
   const [check, setCheck] = useState(false);
   const { habits, setHabits } = useContext(HabitsConcluded);
-  function onClick() {
+  function onClick(habitId) {
     check ? setHabits(habits - 1) : setHabits(habits + 1);
     setCheck((current) => !current);
+    console.log(habitId);
+    doneHabit(habitId);
   }
   return (
     <Container check={check}>
@@ -21,7 +29,7 @@ export default function HabitToday({ title, sequence, record }) {
           Seu recorde: <span>{`${record} dias`}</span>
         </h2>
       </div>
-      <button onClick={onClick}>
+      <button onClick={() => onClick(habitId)}>
         <Check />
       </button>
     </Container>

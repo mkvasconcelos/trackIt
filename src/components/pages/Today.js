@@ -16,6 +16,9 @@ export default function Today() {
   const [loading, setLoading] = useState(true);
   const [listHabitsToday, setListHabitsToday] = useState([]);
   useEffect(() => {
+    getHabitsToday();
+  }, []);
+  function getHabitsToday() {
     const res = axios.get(
       "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today",
       {
@@ -29,7 +32,23 @@ export default function Today() {
     res.catch((err) => {
       setLoading(false);
     });
-  }, []);
+  }
+  function doneHabit(habit) {
+    const res = axios.post(
+      `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit}/check`,
+      {},
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    res.then((res) => {
+      console.log(res);
+      getHabitsToday();
+    });
+    res.catch((err) => {
+      console.log(err.res);
+    });
+  }
   if (loading) {
     return <Loading />;
   }
@@ -51,6 +70,8 @@ export default function Today() {
             title={h.name}
             sequence={h.currentSequence}
             record={h.highestSequence}
+            habitId={h.id}
+            doneHabit={doneHabit}
           />
         ))}
       </Main>
@@ -78,6 +99,7 @@ const FirstParagraph = styled.div`
   h1 {
     color: #126ba5;
     font-size: 23px;
+    margin-bottom: 5px;
   }
   h2 {
     font-size: 18px;
