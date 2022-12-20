@@ -2,9 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import Footer from "../Footer";
 import Header from "../Header";
 import styled from "styled-components";
-import { Container, Main } from "./StyledComponents";
+import { Container, Main, CalendarContainer } from "./StyledComponents";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
 import axios from "axios";
 import { BsCheckLg } from "react-icons/bs";
 import { GiCancel } from "react-icons/gi";
@@ -41,13 +40,13 @@ export default function Historic() {
         <FirstParagraph>
           <h1>Histórico</h1>
         </FirstParagraph>
-        <section>
+        <CalendarContainer>
           <Calendar
             data-teste="calendar"
             defaultValue={new Date()}
             onClickDay={(d) => getHabitsHistory(d.toLocaleDateString("pt-BR"))}
           />
-        </section>
+        </CalendarContainer>
         {habitDay.length !== 0 && (
           <Habits>
             <h1>{habitDay[0].day}</h1>

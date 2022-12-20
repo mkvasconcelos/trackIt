@@ -8,8 +8,8 @@ export const list = [
   { id: 6, weekday: "S" },
 ];
 
-export let day;
-switch (new Date().getDay()) {
+export let day = new Date().getDay();
+switch (day) {
   case 0:
     day = "Domingo";
     break;

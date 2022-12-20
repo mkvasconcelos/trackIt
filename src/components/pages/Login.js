@@ -19,8 +19,8 @@ export default function Login() {
 
   function login(email, password) {
     const payload = {
-      email: email,
-      password: password,
+      email,
+      password,
     };
     const res = axios.post(
       `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login`,
@@ -54,7 +54,7 @@ export default function Login() {
   return (
     <ContainerLogSig>
       <LogoHome />
-      <form onSubmit={send}>
+      <form data-test="login-btn" onSubmit={send}>
         <Input
           data-test="email-input"
           type={"email"}

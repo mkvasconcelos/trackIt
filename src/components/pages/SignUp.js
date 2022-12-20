@@ -17,10 +17,10 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   function signUp(email, name, image, password) {
     const payload = {
-      email: email,
-      name: name,
-      image: image,
-      password: password,
+      email,
+      name,
+      image,
+      password,
     };
     const res = axios.post(
       `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up`,
@@ -49,7 +49,7 @@ export default function SignUp() {
   return (
     <ContainerLogSig>
       <LogoHome />
-      <form onSubmit={send}>
+      <form data-test="signup-btn" onSubmit={send}>
         <Input
           data-test="email-input"
           type={"email"}

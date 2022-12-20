@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Header from "../Header";
@@ -17,7 +17,8 @@ export default function Habits() {
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [habits, setHabits] = useState([]);
-  useEffect(() => {
+
+  const getHabits = useCallback(() => {
     const res = axios.get(
       `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`,
       {
@@ -28,25 +29,13 @@ export default function Habits() {
       setHabits(res.data);
       setLoading(false);
     });
-    res.catch((err) => {
+    res.catch(() => {
       setLoading(false);
     });
   }, [token]);
-  function getHabits() {
-    const res = axios.get(
-      `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-    res.then((res) => {
-      setHabits(res.data);
-      setLoading(false);
-    });
-    res.catch((err) => {
-      setLoading(false);
-    });
-  }
+  useEffect(() => {
+    getHabits();
+  }, [getHabits]);
 
   function createHabit(title, daysSelected) {
     const payload = {
@@ -60,7 +49,7 @@ export default function Habits() {
         headers: { Authorization: `Bearer ${token}` },
       }
     );
-    res.then((res) => {
+    res.then(() => {
       setLoading(false);
       setDisable(false);
       setShow(false);
@@ -68,7 +57,7 @@ export default function Habits() {
       setDaysSelected([]);
       getHabits();
     });
-    res.catch((err) => {
+    res.catch(() => {
       setLoading(false);
       setDisable(false);
     });

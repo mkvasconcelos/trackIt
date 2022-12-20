@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../Header";
 import Footer from "../Footer";
@@ -20,7 +20,7 @@ export default function Today() {
   const { habits, setHabits } = useContext(HabitsConcluded);
   const [loading, setLoading] = useState(true);
   const { listHabitsToday, setListHabitsToday } = useContext(HabitsTodayList);
-  useEffect(() => {
+  const getHabitsToday = useCallback(() => {
     const res = axios.get(
       "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today",
       {
@@ -32,26 +32,15 @@ export default function Today() {
       setListHabitsToday(res.data);
       setHabits(res.data.filter((h) => h.done === true).length);
     });
-    res.catch((err) => {
+    res.catch(() => {
       setLoading(false);
     });
   }, [token, setHabits, setListHabitsToday]);
-  function getHabitsToday() {
-    const res = axios.get(
-      "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today",
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-    res.then((res) => {
-      setLoading(false);
-      setListHabitsToday(res.data);
-      setHabits(res.data.filter((h) => h.done === true).length);
-    });
-    res.catch((err) => {
-      setLoading(false);
-    });
-  }
+
+  useEffect(() => {
+    getHabitsToday();
+  }, [getHabitsToday]);
+
   function doneHabit(habit) {
     const res = axios.post(
       `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit}/check`,
@@ -60,10 +49,10 @@ export default function Today() {
         headers: { Authorization: `Bearer ${token}` },
       }
     );
-    res.then((res) => {
+    res.then(() => {
       getHabitsToday();
     });
-    res.catch((err) => {});
+    res.catch();
   }
   function unDoneHabit(habit) {
     const res = axios.post(
@@ -73,13 +62,10 @@ export default function Today() {
         headers: { Authorization: `Bearer ${token}` },
       }
     );
-    res.then((res) => {
-      console.log(res);
+    res.then(() => {
       getHabitsToday();
     });
-    res.catch((err) => {
-      console.log(err.res);
-    });
+    res.catch();
   }
   if (loading) {
     return <Loading />;

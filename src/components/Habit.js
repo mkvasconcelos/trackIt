@@ -18,10 +18,10 @@ export default function Habit({ title, days, habitId, getHabits }) {
         headers: { Authorization: `Bearer ${token}` },
       }
     );
-    res.then((res) => {
+    res.then(() => {
       getHabits();
     });
-    res.catch((err) => {});
+    res.catch();
   }
   return (
     <Container>
