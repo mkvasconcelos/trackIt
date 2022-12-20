@@ -16,6 +16,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const { setImage } = useContext(Image);
   const { setToken } = useContext(Token);
+
   function login(email, password) {
     const payload = {
       email: email,
@@ -27,6 +28,7 @@ export default function Login() {
     );
     res.then((res) => {
       navigate("/hoje");
+      localStorage.setItem("object", JSON.stringify(res.data));
       setImage(res.data.image);
       setToken(res.data.token);
     });

@@ -17,7 +17,14 @@ export default function Header() {
       <ContainerLink to="/">
         <h1>TrackIt</h1>
       </ContainerLink>
-      <img src={image} alt="profile"></img>
+      <img
+        onClick={() => {
+          window.confirm("Quer deslogar?") && localStorage.removeItem("object");
+          navigate("/");
+        }}
+        src={image}
+        alt="profile"
+      ></img>
     </Container>
   );
 }
@@ -43,6 +50,7 @@ const Container = styled.div`
     width: 51px;
     height: 51px;
     border-radius: 98.5px;
+    cursor: pointer;
   }
 `;
 

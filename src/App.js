@@ -10,7 +10,7 @@ import {
   Image,
   Token,
 } from "./contexts/contexts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Habits from "./components/pages/Habits";
 
 export default function App() {
@@ -18,6 +18,13 @@ export default function App() {
   const [habits, setHabits] = useState(null);
   const [token, setToken] = useState(null);
   const [listHabitsToday, setListHabitsToday] = useState([]);
+  useEffect(() => {
+    try {
+      const data = JSON.parse(localStorage.getItem("object"));
+      setImage(data.image);
+      setToken(data.token);
+    } catch {}
+  }, []);
   return (
     <Image.Provider value={{ image, setImage }}>
       <HabitsConcluded.Provider value={{ habits, setHabits }}>
