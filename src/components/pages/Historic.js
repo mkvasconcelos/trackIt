@@ -13,6 +13,8 @@ export default function Historic() {
   const { token } = useContext(Token);
   const [historyHabits, setHistoryHabits] = useState([]);
   const [habitDay, setHabitDay] = useState([]);
+  const [successList, setSuccessList] = useState([]);
+  const [failList, setFailList] = useState([]);
   useEffect(() => {
     const res = axios.get(
       "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/history/daily",
@@ -23,6 +25,20 @@ export default function Historic() {
     res.then((res) => {
       console.log(res);
       setHistoryHabits(res.data);
+      const newSuccessList = [...successList];
+      const newFailList = [...failList];
+      for (let i = 0; i < res.data.length; i++) {
+        if (
+          res.data[i].habits.length ===
+          res.data[i].habits.filter((h) => h.done === true).length
+        ) {
+          newSuccessList.push(res.data[i].day);
+        } else {
+          newFailList.push(res.data[i].day);
+        }
+      }
+      setSuccessList(newSuccessList);
+      setFailList(newFailList);
     });
     res.catch((err) => {
       console.log(err.res);
@@ -40,11 +56,23 @@ export default function Historic() {
         <FirstParagraph>
           <h1>Histórico</h1>
         </FirstParagraph>
-        <CalendarContainer>
+        <CalendarContainer check={false}>
           <Calendar
             data-teste="calendar"
             defaultValue={new Date()}
             onClickDay={(d) => getHabitsHistory(d.toLocaleDateString("pt-BR"))}
+            tileClassName={({ date }) => {
+              if (
+                successList.find((x) => x === date.toLocaleDateString("pt-BR"))
+              ) {
+                return "right";
+              }
+              if (
+                failList.find((x) => x === date.toLocaleDateString("pt-BR"))
+              ) {
+                return "wrong";
+              }
+            }}
           />
         </CalendarContainer>
         {habitDay.length !== 0 && (
