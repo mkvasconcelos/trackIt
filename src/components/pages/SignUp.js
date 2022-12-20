@@ -49,7 +49,7 @@ export default function SignUp() {
   return (
     <ContainerLogSig>
       <LogoHome />
-      <form data-test="signup-btn" onSubmit={send}>
+      <form onSubmit={send}>
         <Input
           data-test="email-input"
           type={"email"}

@@ -54,7 +54,7 @@ export default function Login() {
   return (
     <ContainerLogSig>
       <LogoHome />
-      <form data-test="login-btn" onSubmit={send}>
+      <form onSubmit={send}>
         <Input
           data-test="email-input"
           type={"email"}
