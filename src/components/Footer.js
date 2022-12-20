@@ -20,11 +20,11 @@ export default function Footer() {
         <CircularProgressbar
           value={habits}
           maxValue={listHabitsToday.length}
-          // text={
-          //   <tspan dy={5} dx={-20}>
-          //     Hoje
-          //   </tspan>
-          // }
+          text={
+            <tspan dy={5} dx={-20}>
+              Hoje
+            </tspan>
+          }
           background
           backgroundPadding={6}
           styles={buildStyles({
