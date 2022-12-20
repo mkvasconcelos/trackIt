@@ -18,8 +18,20 @@ export default function Habits() {
   const [title, setTitle] = useState("");
   const [habits, setHabits] = useState([]);
   useEffect(() => {
-    getHabits();
-  }, []);
+    const res = axios.get(
+      `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    res.then((res) => {
+      setHabits(res.data);
+      setLoading(false);
+    });
+    res.catch((err) => {
+      setLoading(false);
+    });
+  }, [token]);
   function getHabits() {
     const res = axios.get(
       `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`,

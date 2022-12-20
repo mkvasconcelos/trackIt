@@ -10,7 +10,7 @@ export default function Header() {
     if (!token) {
       navigate("/");
     }
-  }, []);
+  }, [token, navigate]);
   return (
     <Container data-test="header">
       <ContainerLink to="/">

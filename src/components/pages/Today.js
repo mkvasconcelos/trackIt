@@ -21,8 +21,21 @@ export default function Today() {
   const [loading, setLoading] = useState(true);
   const { listHabitsToday, setListHabitsToday } = useContext(HabitsTodayList);
   useEffect(() => {
-    getHabitsToday();
-  }, []);
+    const res = axios.get(
+      "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today",
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    res.then((res) => {
+      setLoading(false);
+      setListHabitsToday(res.data);
+      setHabits(res.data.filter((h) => h.done === true).length);
+    });
+    res.catch((err) => {
+      setLoading(false);
+    });
+  }, [token, setHabits, setListHabitsToday]);
   function getHabitsToday() {
     const res = axios.get(
       "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today",
