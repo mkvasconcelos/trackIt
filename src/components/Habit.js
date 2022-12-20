@@ -54,7 +54,7 @@ const Container = styled.div`
   padding: 15px;
   background: #ffffff;
   border-radius: 5px;
-  height: 91px;
+  height: fit-content;
   position: relative;
   margin-bottom: 10px;
   h1 {
@@ -71,12 +71,12 @@ const Trash = styled(BsTrash)`
 `;
 
 const InputDay = styled.input`
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   background: ${(props) => (props.check ? "#CFCFCF" : "#ffffff")};
   border: 1px solid #d5d5d5;
   border-radius: 5px;
-  margin: 0 4px 30px 0;
+  margin: 0 4px 0px 0;
   color: ${(props) => (props.check ? "#ffffff" : "#dbdbdb")};
-  font-size: 20px;
+  font-size: 15px;
 `;

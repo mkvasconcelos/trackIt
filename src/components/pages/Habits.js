@@ -181,7 +181,7 @@ const FirstParagraph = styled.div`
 
 const CreateHabit = styled.div`
   display: ${(props) => (props.show ? "block" : "none")};
-  height: 180px;
+  height: fit-content;
   background: #ffffff;
   border-radius: 5px;
   padding: 18px;
@@ -233,13 +233,13 @@ const CreateHabit = styled.div`
 `;
 
 const InputDay = styled.input`
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   background: ${(props) => (props.check ? "#CFCFCF" : "#ffffff")};
   border: 1px solid #d5d5d5;
   border-radius: 5px;
-  margin: 0 4px 30px 0;
+  margin: 0 4px 10px 0;
   cursor: pointer;
   color: ${(props) => (props.check ? "#ffffff" : "#dbdbdb")};
-  font-size: 20px;
+  font-size: 15px;
 `;

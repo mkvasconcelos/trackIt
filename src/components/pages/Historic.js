@@ -108,6 +108,7 @@ const FirstParagraph = styled.div`
 `;
 
 const Habits = styled.div`
+  height: fit-content;
   div {
     height: fit-content;
     padding: 5px 15px;

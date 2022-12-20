@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Main = styled.div`
   padding: 70px 18px 100px 18px;
   height: fit-content;
+  background: #e5e5e5;
 `;
 export const Container = styled.div`
   display: flex;
