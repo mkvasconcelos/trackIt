@@ -2,16 +2,22 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { Link, useNavigate } from "react-router-dom";
-import { HabitsConcluded, HabitsTodayList } from "../contexts/contexts";
+import {
+  HabitsConcluded,
+  HabitsTodayList,
+  Language,
+} from "../contexts/contexts";
+import { dictionary } from "../constants/constants";
 
 export default function Footer() {
   const { habits } = useContext(HabitsConcluded);
   const { listHabitsToday } = useContext(HabitsTodayList);
+  const { language } = useContext(Language);
   const navigate = useNavigate();
   return (
     <Container data-test="menu">
       <ContainerLink data-test="habit-link" to="/habitos">
-        Hábitos
+        {dictionary[language].habits}
       </ContainerLink>
       <ContainerProgressBar
         data-test="today-link"
@@ -21,9 +27,15 @@ export default function Footer() {
           value={habits}
           maxValue={listHabitsToday.length}
           text={
-            <tspan dy={5} dx={-20}>
-              Hoje
-            </tspan>
+            language === "pt-BR" ? (
+              <tspan dy={5} dx={-20}>
+                {dictionary[language].today}
+              </tspan>
+            ) : (
+              <tspan dy={7} dx={-25}>
+                {dictionary[language].today}
+              </tspan>
+            )
           }
           background
           backgroundPadding={6}
@@ -39,7 +51,7 @@ export default function Footer() {
         />
       </ContainerProgressBar>
       <ContainerLink data-test="history-link" to="/historico">
-        Histórico
+        {dictionary[language].historic}
       </ContainerLink>
     </Container>
   );

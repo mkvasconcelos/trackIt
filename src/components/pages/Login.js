@@ -1,12 +1,14 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Image, Token } from "../../contexts/contexts";
+import { Image, Token, Language } from "../../contexts/contexts";
 import { ContainerLogSig } from "./StyledComponents";
 import LogoHome from "../LogoHome";
 import Input from "../Input";
 import Submit from "../Submit";
 import Loading from "../Loading";
+import { dictionary } from "../../constants/constants";
+// import Switch from "react-switch";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const { setImage } = useContext(Image);
   const { setToken } = useContext(Token);
+  const { language, setLanguage } = useContext(Language);
 
   function login(email, password) {
     const payload = {
@@ -53,12 +56,20 @@ export default function Login() {
 
   return (
     <ContainerLogSig>
+      {/* <Switch checked value={"pt"} /> */}
+      <button
+        onClick={() =>
+          language === "pt-BR" ? setLanguage("en-US") : setLanguage("pt-BR")
+        }
+      >
+        {language.split("-")[0].toUpperCase()}
+      </button>
       <LogoHome />
       <form onSubmit={send}>
         <Input
           data-test="email-input"
           type={"email"}
-          placeholder={"email"}
+          placeholder={dictionary[language].email}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={disable}
@@ -66,15 +77,19 @@ export default function Login() {
         <Input
           data-test="password-input"
           type={"password"}
-          placeholder={"senha"}
+          placeholder={dictionary[language].password}
           value={pwd}
           onChange={(e) => setPwd(e.target.value)}
           disabled={disable}
         />
-        <Submit data-test="login-btn" value={"Entrar"} disabled={disable} />
+        <Submit
+          data-test="login-btn"
+          value={dictionary[language].buttonLogin}
+          disabled={disable}
+        />
       </form>
       <Link data-test="signup-link" to="/cadastro">
-        <p>Já tem uma conta? Faça login!</p>
+        <p>{dictionary[language].linkSignUp}</p>
       </Link>
     </ContainerLogSig>
   );

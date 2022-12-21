@@ -6,6 +6,9 @@ import LogoHome from "../LogoHome";
 import Input from "../Input";
 import Submit from "../Submit";
 import Loading from "../Loading";
+import { dictionary } from "../../constants/constants";
+import { Language } from "../../contexts/contexts";
+import { useContext } from "react";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -15,6 +18,7 @@ export default function SignUp() {
   const [image, setImage] = useState("");
   const [disable, setDisable] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { language } = useContext(Language);
   function signUp(email, name, image, password) {
     const payload = {
       email,
@@ -53,7 +57,7 @@ export default function SignUp() {
         <Input
           data-test="email-input"
           type={"email"}
-          placeholder={"email"}
+          placeholder={dictionary[language].email}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={disable}
@@ -61,7 +65,7 @@ export default function SignUp() {
         <Input
           data-test="password-input"
           type={"password"}
-          placeholder={"senha"}
+          placeholder={dictionary[language].password}
           value={pwd}
           onChange={(e) => setPwd(e.target.value)}
           disabled={disable}
@@ -69,7 +73,7 @@ export default function SignUp() {
         <Input
           data-test="user-name-input"
           type={"text"}
-          placeholder={"nome"}
+          placeholder={dictionary[language].name}
           value={name}
           onChange={(e) => setName(e.target.value)}
           disabled={disable}
@@ -77,15 +81,19 @@ export default function SignUp() {
         <Input
           data-test="user-image-input"
           type={"text"}
-          placeholder={"foto"}
+          placeholder={dictionary[language].photo}
           value={image}
           onChange={(e) => setImage(e.target.value)}
           disabled={disable}
         />
-        <Submit data-test="signup-btn" value={"Cadastrar"} disabled={disable} />
+        <Submit
+          data-test="signup-btn"
+          value={dictionary[language].buttonSignUp}
+          disabled={disable}
+        />
       </form>
       <Link data-test="login-link" to="/">
-        <p>Já tem uma conta? Faça login!</p>
+        <p>{dictionary[language].linkLogin}</p>
       </Link>
     </ContainerLogSig>
   );

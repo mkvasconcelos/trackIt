@@ -3,10 +3,10 @@ import axios from "axios";
 import styled from "styled-components";
 import Header from "../Header";
 import Footer from "../Footer";
-import { Token } from "../../contexts/contexts";
+import { Language, Token } from "../../contexts/contexts";
 import Loading from "../Loading";
 import Habit from "../Habit";
-import { list } from "../../constants/constants";
+import { dictionary, weekDayList } from "../../constants/constants";
 import { Container, Main } from "./StyledComponents";
 
 export default function Habits() {
@@ -17,7 +17,7 @@ export default function Habits() {
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("");
   const [habits, setHabits] = useState([]);
-
+  const { language } = useContext(Language);
   const getHabits = useCallback(() => {
     const res = axios.get(
       `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`,
@@ -84,7 +84,7 @@ export default function Habits() {
       <Header />
       <Main>
         <FirstParagraph>
-          <h1>Meus hábitos</h1>
+          <h1>{dictionary[language].habitsTitle}</h1>
           <button
             data-test="habit-create-btn"
             onClick={() => setShow(true)}
@@ -101,12 +101,12 @@ export default function Habits() {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="nome do hábito"
+                placeholder={dictionary[language].createHabitName}
                 required
               ></input>
             </div>
             <div>
-              {list.map((d) => (
+              {weekDayList[language].map((d) => (
                 <InputDay
                   data-test="habit-day"
                   key={d.id}
@@ -124,12 +124,12 @@ export default function Habits() {
                 text="button"
                 disabled={disable}
                 onClick={() => setShow(false)}
-                value="Cancelar"
+                value={dictionary[language].createHabitCancelButton}
               ></input>
               <input
                 data-test="habit-create-save-btn"
                 type="submit"
-                value="Salvar"
+                value={dictionary[language].createHabitSaveButton}
                 disabled={disable}
               ></input>
             </div>
@@ -137,7 +137,7 @@ export default function Habits() {
         </CreateHabit>
         <section>
           {habits.length === 0
-            ? "Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!"
+            ? dictionary[language].habitsNonehabit
             : habits.map((h) => (
                 <Habit
                   data-test="habit-container"

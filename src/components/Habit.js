@@ -2,11 +2,12 @@ import axios from "axios";
 import React, { useContext } from "react";
 import { BsTrash } from "react-icons/bs";
 import styled from "styled-components";
-import { list } from "../constants/constants";
-import { Token } from "../contexts/contexts";
+import { weekDayList } from "../constants/constants";
+import { Token, Language } from "../contexts/contexts";
 
 export default function Habit({ title, days, habitId, getHabits }) {
   const { token } = useContext(Token);
+  const { language } = useContext(Language);
   function removeHabit(habit) {
     const answer = window.confirm("Tem certeza que quer apagar esse hábito?");
     if (!answer) {
@@ -29,7 +30,7 @@ export default function Habit({ title, days, habitId, getHabits }) {
         <h1 data-test="habit-name">{title}</h1>
       </div>
       <div>
-        {list.map((d) => (
+        {weekDayList[language].map((d) => (
           <InputDay
             data-test="habit-day"
             key={d.id}

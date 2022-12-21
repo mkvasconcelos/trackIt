@@ -6,12 +6,14 @@ import {
   HabitsConcluded,
   HabitsTodayList,
   Token,
+  Language,
 } from "../../contexts/contexts";
 import HabitToday from "../HabitToday";
-import { day } from "../../constants/constants";
+import { getWeekday } from "../../constants/constants";
 import axios from "axios";
 import Loading from "../Loading";
 import { Container, Main } from "./StyledComponents";
+import { dictionary } from "../../constants/constants";
 
 export default function Today() {
   const date = new Date().getDate();
@@ -20,6 +22,7 @@ export default function Today() {
   const { habits, setHabits } = useContext(HabitsConcluded);
   const [loading, setLoading] = useState(true);
   const { listHabitsToday, setListHabitsToday } = useContext(HabitsTodayList);
+  const { language } = useContext(Language);
   const getHabitsToday = useCallback(() => {
     const res = axios.get(
       "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today",
@@ -75,13 +78,22 @@ export default function Today() {
       <Header />
       <Main habits={habits}>
         <FirstParagraph>
-          <h1 data-test="today">{`${day}, ${date}/${month + 1}`}</h1>
+          {language === "pt" && (
+            <h1 data-test="today">{`${getWeekday(language)}, ${date}/${
+              month + 1
+            }`}</h1>
+          )}
+          {language === "en" && (
+            <h1 data-test="today">{`${getWeekday(language)}, ${
+              month + 1
+            }/${date}`}</h1>
+          )}
           <h2 data-test="today-counter">
             {habits
-              ? `${parseInt(
-                  (habits / listHabitsToday.length) * 100
-                )}% dos hábitos concluídos`
-              : "Nenhum hábito concluído ainda"}
+              ? `${parseInt((habits / listHabitsToday.length) * 100)}% ${
+                  dictionary[language].textTodayDone
+                }`
+              : dictionary[language].textTodayUndone}
           </h2>
         </FirstParagraph>
         {listHabitsToday.map((h) => (

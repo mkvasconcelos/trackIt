@@ -8,6 +8,7 @@ import {
   HabitsConcluded,
   HabitsTodayList,
   Image,
+  Language,
   Token,
 } from "./contexts/contexts";
 import { useEffect, useState } from "react";
@@ -18,6 +19,7 @@ export default function App() {
   const [habits, setHabits] = useState(null);
   const [token, setToken] = useState(null);
   const [listHabitsToday, setListHabitsToday] = useState([]);
+  const [language, setLanguage] = useState("pt-BR");
   useEffect(() => {
     try {
       const data = JSON.parse(localStorage.getItem("object"));
@@ -32,18 +34,20 @@ export default function App() {
           <HabitsTodayList.Provider
             value={{ listHabitsToday, setListHabitsToday }}
           >
-            <div>
-              <BrowserRouter>
-                <GlobalStyle />
-                <Routes>
-                  <Route path="/" element={<Login />} />
-                  <Route path="/cadastro" element={<SignUp />} />
-                  <Route path="/hoje" element={<Today />} />
-                  <Route path="/habitos" element={<Habits />} />
-                  <Route path="/historico" element={<Historic />} />
-                </Routes>
-              </BrowserRouter>
-            </div>
+            <Language.Provider value={{ language, setLanguage }}>
+              <div>
+                <BrowserRouter>
+                  <GlobalStyle />
+                  <Routes>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/cadastro" element={<SignUp />} />
+                    <Route path="/hoje" element={<Today />} />
+                    <Route path="/habitos" element={<Habits />} />
+                    <Route path="/historico" element={<Historic />} />
+                  </Routes>
+                </BrowserRouter>
+              </div>
+            </Language.Provider>
           </HabitsTodayList.Provider>
         </Token.Provider>
       </HabitsConcluded.Provider>

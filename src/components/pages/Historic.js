@@ -7,7 +7,7 @@ import Calendar from "react-calendar";
 import axios from "axios";
 import { BsCheckLg } from "react-icons/bs";
 import { GiCancel } from "react-icons/gi";
-import { Token } from "../../contexts/contexts";
+import { Token, Language } from "../../contexts/contexts";
 
 export default function Historic() {
   const { token } = useContext(Token);
@@ -15,6 +15,7 @@ export default function Historic() {
   const [habitDay, setHabitDay] = useState([]);
   const [successList, setSuccessList] = useState([]);
   const [failList, setFailList] = useState([]);
+  const { language } = useContext(Language);
   useEffect(() => {
     const res = axios.get(
       "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/history/daily",
@@ -43,7 +44,7 @@ export default function Historic() {
     res.catch((err) => {
       console.log(err.res);
     });
-  }, [token]);
+  }, [token, setFailList, setSuccessList, failList, successList]);
   function getHabitsHistory(day) {
     const habitDay = historyHabits.filter((d) => d.day === day);
     setHabitDay(habitDay);
@@ -59,6 +60,7 @@ export default function Historic() {
         <CalendarContainer check={false}>
           <Calendar
             data-teste="calendar"
+            locale={language}
             defaultValue={new Date()}
             onClickDay={(d) => getHabitsHistory(d.toLocaleDateString("pt-BR"))}
             tileClassName={({ date }) => {
@@ -77,7 +79,12 @@ export default function Historic() {
         </CalendarContainer>
         {habitDay.length !== 0 && (
           <Habits>
-            <h1>{habitDay[0].day}</h1>
+            {language === "pt-BR" && <h1>{habitDay[0].day}</h1>}
+            {language === "en-US" && (
+              <h1>{`${habitDay[0].day.split("/")[1]}/${
+                habitDay[0].day.split("/")[0]
+              }/${habitDay[0].day.split("/")[2]}`}</h1>
+            )}
             {habitDay[0].habits.map((h) => (
               <div key={h.id}>
                 <h1>{h.name}</h1>

@@ -20,6 +20,7 @@ export const ContainerLogSig = styled.div`
   flex-direction: column;
   align-items: center;
   align-items: center;
+  position: relative;
   form {
     display: flex;
     flex-direction: column;
@@ -30,6 +31,21 @@ export const ContainerLogSig = styled.div`
     color: #52b6ff;
     text-decoration: underline;
     font-size: 14px;
+  }
+  button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border-radius: 5px;
+    border: none;
+    width: 30px;
+    height: 30px;
+    background: #52b6ff;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  button:hover {
+    opacity: 0.8;
   }
 `;
 

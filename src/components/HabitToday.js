@@ -1,6 +1,9 @@
 import React from "react";
 import { BsCheckLg } from "react-icons/bs";
 import styled from "styled-components";
+import { dictionary } from "../constants/constants";
+import { Language } from "../contexts/contexts";
+import { useContext } from "react";
 
 export default function HabitToday({
   title,
@@ -11,6 +14,7 @@ export default function HabitToday({
   unDoneHabit,
   check,
 }) {
+  const { language } = useContext(Language);
   function onClick(habitId, check) {
     !check ? doneHabit(habitId) : unDoneHabit(habitId);
   }
@@ -19,10 +23,12 @@ export default function HabitToday({
       <div>
         <h1 data-test="today-habit-name">{title}</h1>
         <h2 data-test="today-habit-sequence">
-          Sequência atual: <span>{`${sequence} dias`}</span>
+          {`${dictionary[language].currentSequence} `}
+          <span>{`${sequence} ${dictionary[language].days}`}</span>
         </h2>
         <h2 data-test="today-habit-record">
-          Seu recorde: <span>{`${record} dias`}</span>
+          {`${dictionary[language].higherSequence} `}
+          <span>{`${record} ${dictionary[language].days}`}</span>
         </h2>
       </div>
       <button
