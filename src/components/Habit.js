@@ -5,14 +5,25 @@ import styled from "styled-components";
 import { weekDayList } from "../constants/constants";
 import { Token, Language } from "../contexts/contexts";
 
-export default function Habit({ title, days, habitId, getHabits }) {
+export default function Habit({
+  title,
+  days,
+  habitId,
+  getHabits,
+  setClicked,
+  remove,
+}) {
   const { token } = useContext(Token);
   const { language } = useContext(Language);
   function removeHabit(habit) {
+    // setClicked(true);
     const answer = window.confirm("Tem certeza que quer apagar esse hábito?");
     if (!answer) {
       return;
     }
+    // if (remove) {
+    //   return;
+    // }
     const res = axios.delete(
       `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit}`,
       {
@@ -21,9 +32,12 @@ export default function Habit({ title, days, habitId, getHabits }) {
     );
     res.then(() => {
       getHabits();
+      // setClicked(false);
     });
     res.catch();
+    // res.catch(() => setClicked(false));
   }
+
   return (
     <Container>
       <div>

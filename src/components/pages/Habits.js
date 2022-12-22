@@ -18,6 +18,8 @@ export default function Habits() {
   const [title, setTitle] = useState("");
   const [habits, setHabits] = useState([]);
   const { language } = useContext(Language);
+  // const [clicked, setClicked] = useState(false);
+  // const [remove, setRemove] = useState(false);
   const getHabits = useCallback(() => {
     const res = axios.get(
       `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`,
@@ -146,11 +148,26 @@ export default function Habits() {
                   days={h.days}
                   habitId={h.id}
                   getHabits={getHabits}
+                  // setClicked={setClicked}
+                  // remove={remove}
                 />
               ))}
         </section>
       </Main>
       <Footer />
+      {/* {clicked && (
+        <Modal>
+          {dictionary[language].habitCancelText}
+          <div>
+            <button onClick={() => setRemove(true)}>
+              {dictionary[language].yes}
+            </button>
+            <button onClick={() => setRemove(false)}>
+              {dictionary[language].no}
+            </button>
+          </div>
+        </Modal>
+      )} */}
     </Container>
   );
 }
@@ -243,3 +260,34 @@ const InputDay = styled.input`
   color: ${(props) => (props.check ? "#ffffff" : "#dbdbdb")};
   font-size: 15px;
 `;
+
+// const Modal = styled.div`
+//   position: absolute;
+//   top: calc(50%);
+//   width: 80%;
+//   left: calc(10%);
+//   z-index: 2;
+//   background-color: #e5e5e5;
+//   border-radius: 5px;
+//   height: 80px;
+//   display: flex;
+//   flex-direction: column;
+//   padding: 10px;
+//   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 1);
+//   button {
+//     margin: 10px 10px 0 0;
+//     border: none;
+//     border-radius: 5px;
+//     color: white;
+//     cursor: pointer;
+//   }
+//   button:hover {
+//     opacity: 0.8;
+//   }
+//   button:first-child {
+//     background-color: red;
+//   }
+//   button:last-child {
+//     background-color: green;
+//   }
+// `;

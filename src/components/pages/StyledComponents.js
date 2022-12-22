@@ -9,6 +9,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   background: #e5e5e5;
+  position: relative;
   section {
     font-size: 18px;
     color: #666666;

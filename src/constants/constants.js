@@ -86,6 +86,9 @@ export const dictionary = {
     createHabitName: "nome do hábito",
     createHabitCancelButton: "Cancelar",
     createHabitSaveButton: "Salvar",
+    habitCancelText: "Tem certeza que quer apagar esse hábito?",
+    yes: "Sim",
+    no: "Não",
   },
   "en-US": {
     email: "email",
@@ -110,5 +113,8 @@ export const dictionary = {
     createHabitName: "habit's name",
     createHabitCancelButton: "Cancel",
     createHabitSaveButton: "Save",
+    habitCancelText: "Are you sure you want to delete this habit?",
+    yes: "Sim",
+    no: "Não",
   },
 };
