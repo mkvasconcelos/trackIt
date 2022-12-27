@@ -2,40 +2,38 @@ import axios from "axios";
 import React, { useContext } from "react";
 import { BsTrash } from "react-icons/bs";
 import styled from "styled-components";
-import { weekDayList } from "../constants/constants";
+import { weekDayList, dictionary } from "../constants/constants";
 import { Token, Language } from "../contexts/contexts";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
-export default function Habit({
-  title,
-  days,
-  habitId,
-  getHabits,
-  setClicked,
-  remove,
-}) {
+export default function Habit({ title, days, habitId, getHabits }) {
   const { token } = useContext(Token);
   const { language } = useContext(Language);
   function removeHabit(habit) {
-    // setClicked(true);
-    const answer = window.confirm("Tem certeza que quer apagar esse hábito?");
-    if (!answer) {
-      return;
-    }
-    // if (remove) {
-    //   return;
-    // }
-    const res = axios.delete(
-      `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit}`,
-      {
-        headers: { Authorization: `Bearer ${token}` },
+    const Modal = withReactContent(Swal);
+    Modal.fire({
+      title: `${dictionary[language].habitCancelText}`,
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText: <p>{dictionary[language].yes}!</p>,
+      cancelButtonText: <p>{dictionary[language].no}</p>,
+    }).then((result) => {
+      console.log(result);
+      if (!result.isConfirmed) return;
+      else {
+        const res = axios.delete(
+          `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        res.then(() => {
+          getHabits();
+        });
+        res.catch();
       }
-    );
-    res.then(() => {
-      getHabits();
-      // setClicked(false);
     });
-    res.catch();
-    // res.catch(() => setClicked(false));
   }
 
   return (
@@ -51,8 +49,7 @@ export default function Habit({
             type="button"
             value={d.weekday}
             check={days.includes(d.id)}
-            disabled
-          ></InputDay>
+            disabled></InputDay>
         ))}
       </div>
       <Trash
