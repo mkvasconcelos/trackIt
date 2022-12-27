@@ -114,7 +114,7 @@ export const dictionary = {
     createHabitCancelButton: "Cancel",
     createHabitSaveButton: "Save",
     habitCancelText: "Are you sure you want to delete this habit?",
-    yes: "Sim",
-    no: "Não",
+    yes: "Yes",
+    no: "No",
   },
 };
